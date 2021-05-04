@@ -37,7 +37,7 @@ public class TaxCalculator : MonoBehaviour
     {
         // Get from user. E.g. input box
         // Validate the input (ensure it is a positive, valid number)
-        double grossYearlySalary = double.Parse();
+        double grossYearlySalary;
         if (grossYearlySalary == 0)
         {
 
@@ -56,6 +56,30 @@ public class TaxCalculator : MonoBehaviour
     {
         // This is a stub, replace with the real calculation and return the result
         double grossYearlySalary = grossSalaryInput;
+
+        return grossYearlySalary;
+    }
+
+    private double CalculateNetIncome(double grossYearlySalary, ref double medicareLevyPaid, ref double incomeTaxPaid)
+    {
+        // This is a stub, replace with the real calculation and return the result
+        medicareLevyPaid = CalculateMedicareLevy(grossYearlySalary);
+        incomeTaxPaid = CalculateIncomeTax(grossYearlySalary);
+        double netIncome = (grossYearlySalary - incomeTaxPaid - medicareLevyPaid);
+        return netIncome;
+    }
+
+    private double CalculateMedicareLevy(double grossYearlySalary)
+    {
+        // This is a stub, replace with the real calculation and return the result
+        double medicareLevyPaid = (grossYearlySalary * MEDICARE_LEVY);
+        return medicareLevyPaid;
+    }
+
+    private double CalculateIncomeTax(double grossYearlySalary)
+    {
+        // This is a stub, replace with the real calculation and return the result
+        double incomeTaxPaid;
         if (grossYearlySalary >= 1 && grossYearlySalary <= 18200)
         {
             return grossYearlySalary;
@@ -78,32 +102,8 @@ public class TaxCalculator : MonoBehaviour
         }
         else
         {
-
+            return "NIL";
         }
-
-        return grossYearlySalary;
-    }
-
-    private double CalculateNetIncome(double grossYearlySalary, ref double medicareLevyPaid, ref double incomeTaxPaid)
-    {
-        // This is a stub, replace with the real calculation and return the result
-        medicareLevyPaid = CalculateMedicareLevy(grossYearlySalary);
-        incomeTaxPaid = CalculateIncomeTax(grossYearlySalary);
-        double netIncome = 33000;        
-        return netIncome;
-    }
-
-    private double CalculateMedicareLevy(double grossYearlySalary)
-    {
-        // This is a stub, replace with the real calculation and return the result
-        double medicareLevyPaid = 2000;        
-        return medicareLevyPaid;
-    }
-
-    private double CalculateIncomeTax(double grossYearlySalary)
-    {
-        // This is a stub, replace with the real calculation and return the result
-        double incomeTaxPaid = 15000;
         return incomeTaxPaid;
     }
 
