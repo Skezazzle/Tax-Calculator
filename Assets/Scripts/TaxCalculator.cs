@@ -37,7 +37,11 @@ public class TaxCalculator : MonoBehaviour
     {
         // Get from user. E.g. input box
         // Validate the input (ensure it is a positive, valid number)
-        double grossYearlySalary = 1000;
+        double grossYearlySalary;
+        if (grossYearlySalary == 0)
+        {
+
+        }
         return grossYearlySalary;
     }
 
@@ -51,7 +55,8 @@ public class TaxCalculator : MonoBehaviour
     private double CalculateGrossYearlySalary(double grossSalaryInput, string salaryPayPeriod)
     {
         // This is a stub, replace with the real calculation and return the result
-        double grossYearlySalary = 50000;
+        double grossYearlySalary = grossSalaryInput;
+
         return grossYearlySalary;
     }
 
@@ -60,21 +65,45 @@ public class TaxCalculator : MonoBehaviour
         // This is a stub, replace with the real calculation and return the result
         medicareLevyPaid = CalculateMedicareLevy(grossYearlySalary);
         incomeTaxPaid = CalculateIncomeTax(grossYearlySalary);
-        double netIncome = 33000;        
+        double netIncome = (grossYearlySalary - incomeTaxPaid - medicareLevyPaid);
         return netIncome;
     }
 
     private double CalculateMedicareLevy(double grossYearlySalary)
     {
         // This is a stub, replace with the real calculation and return the result
-        double medicareLevyPaid = 2000;        
+        double medicareLevyPaid = (grossYearlySalary * MEDICARE_LEVY);
         return medicareLevyPaid;
     }
 
     private double CalculateIncomeTax(double grossYearlySalary)
     {
         // This is a stub, replace with the real calculation and return the result
-        double incomeTaxPaid = 15000;
+        double incomeTaxPaid;
+        if (grossYearlySalary >= 1 && grossYearlySalary <= 18200)
+        {
+            return grossYearlySalary;
+        }
+        else if (grossYearlySalary >= 18201 && grossYearlySalary <= 37000)
+        {
+            return (grossYearlySalary - (grossYearlySalary * 0.19));
+        }
+        else if (grossYearlySalary >= 37001 && grossYearlySalary <= 90000)
+        {
+            return (grossYearlySalary - (grossYearlySalary * 0.325));
+        }
+        else if (grossYearlySalary >= 90001 && grossYearlySalary <= 180000)
+        {
+            return (grossYearlySalary - (grossYearlySalary * 0.37));
+        }
+        else if (grossYearlySalary >= 180001)
+        {
+            return (grossYearlySalary - (grossYearlySalary * 0.45));
+        }
+        else
+        {
+            return "NIL";
+        }
         return incomeTaxPaid;
     }
 
