@@ -37,12 +37,11 @@ public class TaxCalculator : MonoBehaviour
     {
         // Get from user. E.g. input box
         // Validate the input (ensure it is a positive, valid number)
-        double grossYearlySalary;
-        if (grossYearlySalary <=0)
+        if (double.TryParse(GrossSalaryInputField.text, out double grosssalaryinput))
         {
-
+            return grossSalaryInput;
         }
-        return grossYearlySalary;
+        else 
     }
 
     private string GetSalaryPayPeriod()
