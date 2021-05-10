@@ -25,12 +25,12 @@ public class TaxCalculator : MonoBehaviour
     public void Calculate()
     {
         // Initialisation of variables
-        double medicareLevyPaid;
-        double incomeTaxPaid;
+        double medicareLevyPaid = 0;
+        double incomeTaxPaid = 0;
 
         // Input
         double grossSalaryInput = GetGrossSalary();
-        string salaryPayPeriod = GetSalaryPayPeriod();
+        int salaryPayPeriod = GetSalaryPayPeriod();
 
         // Calculations
         double grossYearlySalary = CalculateGrossYearlySalary(grossSalaryInput, salaryPayPeriod);
@@ -44,13 +44,17 @@ public class TaxCalculator : MonoBehaviour
     {
         // Get from user. E.g. input box
         // Validate the input (ensure it is a positive, valid number)
-        if (double.TryParse(GrossSalaryInputField.text, out double grosssalaryinput))
+        if (double.TryParse(GSIField.text, out double grossSalaryInput))
         {
             return grossSalaryInput;
         }
+        else
+        {
+            return 0;
+        }
     }
 
-    private string GetSalaryPayPeriod()
+    private int GetSalaryPayPeriod()
     {
         int timeperiod = TimePeriodDropdown.value;
         if (timeperiod == 0) { return 1; }
@@ -61,7 +65,7 @@ public class TaxCalculator : MonoBehaviour
         return 0;
     }
 
-    private double CalculateGrossYearlySalary(double grossSalaryInput, string salaryPayPeriod)
+    private double CalculateGrossYearlySalary(double grossSalaryInput, int salaryPayPeriod)
     {
         return grossSalaryInput * salaryPayPeriod;
     }
@@ -82,7 +86,6 @@ public class TaxCalculator : MonoBehaviour
 
     private double CalculateIncomeTax(double grossYearlySalary)
     {
-        double incomeTaxPaid;
         if (grossYearlySalary >= 1 && grossYearlySalary <= 18200)
         {
             return grossYearlySalary;
@@ -107,15 +110,14 @@ public class TaxCalculator : MonoBehaviour
         {
             return 0;
         }
-        return incomeTaxPaid;
     }
 
     private void OutputResults(double medicareLevyPaid, double incomeTaxPaid, double netIncome)
     {
         // Output the following to the GUI
-        // "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
-        // "Income tax paid: $" + incomeTaxPaid.ToString("F2");
-        // "Net income: $" + netIncome.ToString("F2");
+        OutputMedicareLevy = "Medicare levy paid: $" + medicareLevyPaid.ToString("F2");
+        OutputTaxPaid = "Income tax paid: $" + incomeTaxPaid.ToString("F2");
+        OutputNetIncome = "Net income: $" + netIncome.ToString("F2");
     }
 
     // Text to Speech
