@@ -633,7 +633,7 @@ GameObject:
   - component: {fileID: 404986786}
   - component: {fileID: 404986785}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Netincome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1523,6 +1523,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &899615463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,6 +1736,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fcf55b6bfc3d04fb56cc2f2fbd4517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimePeriodDropdown: {fileID: 1995681141}
+  GSIField: {fileID: 899615462}
+  ToggleTTS: {fileID: 492817513}
+  OutputNetIncome: {fileID: 404986785}
+  OutputMedicareLevy: {fileID: 1266525956}
+  OutputTaxPaid: {fileID: 1620843098}
+  Error: {fileID: 0}
 --- !u!114 &1151694038
 MonoBehaviour:
   m_ObjectHideFlags: 0
